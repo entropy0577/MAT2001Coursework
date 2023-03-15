@@ -12,19 +12,17 @@ def load_gs_img(path):
     return img_as_arr
 
 
-# Solves part 2. Uses list comprehension to create a new list
-def get_faces(hindex, vindex, img_as_arr):
-    yield (img_as_arr[(26 + i*123):(149 + (i*123)), j*127:(126 + j * 127)].flatten() for i in range(hindex)
-            for j in range(vindex))
-
 # Using list comprehension
 def variance_of_arr(array):
     return np.asarray([np.linalg.norm(i - np.mean(i)) / len(array) for i in array])
 
-
-
 test_as_arr = load_gs_img('test.png')
 faces_as_arr = load_gs_img('faces.png')
-face_list = get_faces(4, 6, faces_as_arr)
+# A generator expression solving part 2
+face_list = [faces_as_arr[(26 + i*123):(149 + (i*123)), j*127:(126 + j * 127)].flatten() for i in range(4) for j in range(6)]
+# A generator expression containing the variances 
+variance_gen = (np.linalg.norm(i - np.mean(i) / 24) for i in face_list)
 
-print(face_list)
+gram = [np.dot(i, j) for i in face_list for j in face_list]
+
+print(gram)
