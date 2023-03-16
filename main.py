@@ -49,7 +49,7 @@ if __name__ == '__main__':
     test_as_arr = load_gs_img('test.png')[0:123, 0:126] / 255
     faces_as_arr = load_gs_img('faces.png') / 255
     # List comprehension solving part 2
-    face_list_flat = [faces_as_arr[(26 + i*123):(149 + (i*123)), j*127:(126 + j * 127)].flatten() for i in range(4) for j in range(6)]
+    face_list_flat = np.asarray([[faces_as_arr[(26 + i*123):(149 + (i*123)), j*127:(126 + j * 127)].flatten()] for i in range(4) for j in range(6)])
     face_list = [[faces_as_arr[(26 + i*123):(149 + (i*123)), j*127:(126 + j * 127)] for i in range(4)] for j in range(6)]
     # Calculates the mean Problem 3
     mean = np.sum(face_list_flat) * 1/len(face_list_flat)
