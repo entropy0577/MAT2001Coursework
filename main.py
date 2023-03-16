@@ -26,7 +26,7 @@ def construct_gram(arr: npt.ArrayLike, func: Callable, sigma: float) -> np.ndarr
 
 # A function to calculate the kernal
 def kernal(x: npt.ArrayLike, xprime: npt.ArrayLike, sigma: float) -> float:
-    return math.exp(-1 * (np.linalg.norm(x - xprime) ** 2 / (2 * sigma)))
+    return math.exp(-1 * ((np.linalg.norm(x - xprime) ** 2) / (2 * sigma)))
 
 # Sln to problem 6
 def classify(x: npt.ArrayLike, x_n: npt.ArrayLike, Z: npt.ArrayLike, sigma: float) -> np.ndarray:
