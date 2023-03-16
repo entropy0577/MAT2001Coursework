@@ -76,4 +76,4 @@ if __name__ == '__main__':
     print(x)
     # Plots the 6 dimensional vector
     plot_output(x)
-    
+    # If test.png was one of the images showing digust the output would be [0, 1, 0, 0, 0, 0]
