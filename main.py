@@ -26,7 +26,8 @@ def is_in(arr: npt.ArrayLike, values: npt.ArrayLike) -> bool:
 # Problem 5 part 1 solved by using nested list comprehension and the numpy.isin function
 def create_y_matrix(img_arr: npt.ArrayLike, face_list: npt.ArrayLike) -> np.ndarray:
     return np.asarray([[1 if is_in(j, i) else 0 for i in img_arr] for j in face_list])
-# Problem 4
+
+# Problem 4 sln
 def construct_gram(arr: npt.ArrayLike, func: Callable, sigma: float) -> np.ndarray:
     return np.asarray([[func(i, j, sigma) for i in arr] for j in arr])
 
@@ -74,11 +75,10 @@ if __name__ == '__main__':
     graminverse = np.linalg.inv(gram)
     # Gets the emotion_matrix serving as Y for constructing Z
     face_mat = create_y_matrix(face_list_flat, np.asarray(face_list))
-    print(face_mat)
     # Calculates Z identical to using np.matmult
     Z = face_mat @ graminverse
     # Classifies the test image against the training data using the gram matrix, and then normalizes it 
-    x = normalize(classify(face_list_flat[0], face_list_flat, Z, variance))
+    x = normalize(classify(test_as_arr.flatten(), face_list_flat, Z, variance))
     # Prints the 6 dimensional vector
     print(x)
     # Plots the 6 dimensional vector
