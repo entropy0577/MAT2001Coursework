@@ -15,7 +15,7 @@ def load_gs_img(path: str | Path) -> np.ndarray:
     img = Image.open(path).convert('L')
     img_as_arr = np.asarray(img.getdata()).reshape((img.size[1], img.size[0], 1))
     return img_as_arr
-# A workaround that checks if values are contained in a given array
+# A function that checks if values are contained in a given array
 def is_in(arr: npt.ArrayLike, values: npt.ArrayLike) -> bool:
     for i in arr:
         if np.all(values == i.flatten()):
@@ -55,7 +55,7 @@ def plot_output(x: npt.ArrayLike):
     for rect, label in zip(rects, truncx):
         height = rect.get_height()
         ax.text(rect.get_x() + rect.get_width() / 2, height,  label, ha='center', va='bottom')
-    plt.show()    
+    plt.show()
 
 # Checks if the code is being ran or imported
 if __name__ == '__main__':
