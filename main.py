@@ -49,7 +49,7 @@ def normalize(n: npt.ArrayLike) -> np.ndarray:
 # Plots the classification vector with labels
 def plot_output(x: npt.ArrayLike):
     fig, ax = plt.subplots()
-    truncx = [round(i, 3) for i in x]
+    truncx = (round(i, 3) for i in x)
     emotions = ['Angriness', 'Disgust', 'Fear', 'Happiness', 'Sadness', 'Suprise']
     rects = ax.bar(emotions, x)
     for rect, label in zip(rects, truncx):
